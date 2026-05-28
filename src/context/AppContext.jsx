@@ -12,8 +12,8 @@ export const AppProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Using import.meta.env.VITE_API_URL for production (Vercel) or fallback to local
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+  // Use relative /api in production (Vercel) and localhost in development
+  const API_URL = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:8080/api';
   const navigate = useNavigate();
 
   useEffect(() => {
