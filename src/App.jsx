@@ -46,7 +46,7 @@ const Navbar = () => {
       </div>
       
       {/* Desktop Links */}
-      <div className="desktop-only mobile-flex" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+      <div className="desktop-only" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
         {navLinks.map(link => (
           <NavLink 
             key={link.path}
@@ -101,7 +101,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="mobile-only mobile-nav-overlay" style={{
+        <div className="mobile-nav-overlay" style={{
           position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh',
           background: 'rgba(10, 10, 10, 0.98)', zIndex: 1000,
           display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2rem'
