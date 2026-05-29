@@ -81,7 +81,7 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '3rem 2rem' }}>
+      <div className="section-padding" style={{ maxWidth: '1400px', margin: '0 auto' }}>
         
         {/* NO ACTIVE PLAN STATE */}
         {!subscription ? (

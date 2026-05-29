@@ -155,6 +155,25 @@ button, .btn {
   border-radius: 4px;
 }
 
+.section-padding {
+  padding: 4rem 2rem;
+  background: var(--bg-color);
+}
+
+.trending-img-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.movie-poster-card {
+  width: 180px;
+  height: 270px;
+}
+
 /* -----------------------------
    MOBILE RESPONSIVENESS
 ------------------------------ */
@@ -185,17 +204,19 @@ button, .btn {
 
   /* Landing Page Fixes */
   .hero-title {
-    font-size: 36px !important;
+    font-size: 54px !important;
   }
   .hero-buttons {
     flex-direction: column;
     width: 100%;
+    gap: 12px;
   }
   .hero-buttons .btn {
     width: 100%;
   }
   .features-grid {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
   }
   .stats-grid {
     grid-template-columns: 1fr !important;
@@ -211,6 +232,12 @@ button, .btn {
     scroll-snap-align: start;
     flex: 0 0 140px;
     width: 140px !important;
+  }
+  .trending-img-container {
+    height: 210px !important;
+  }
+  .section-padding {
+    padding: 3rem 1rem !important;
   }
 
   /* Plans Page Fixes */
@@ -234,6 +261,9 @@ button, .btn {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center;
+    padding: 3rem 1rem !important;
+    height: auto !important;
+    gap: 1rem;
   }
   .dashboard-title {
     font-size: 32px !important;
@@ -264,6 +294,11 @@ button, .btn {
   }
   .watchlist-grid > * {
     width: 100% !important;
+  }
+  .movie-poster-card {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 2/3 !important;
   }
   .watchlist-search {
     flex-direction: column !important;

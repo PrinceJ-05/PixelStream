@@ -94,7 +94,7 @@ const WatchlistPage = () => {
   };
 
   return (
-    <div className="page-container" style={{ padding: '3rem 2rem', maxWidth: '1400px', margin: '0 auto' }}>
+    <div className="page-container section-padding" style={{ maxWidth: '1400px', margin: '0 auto', minHeight: '100vh' }}>
       
       {/* Header Row */}
       <div className="watchlist-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>

@@ -97,7 +97,7 @@ const LandingPage = () => {
 
       {/* TRENDING NOW Section */}
       {trendingMovies.length > 0 && (
-        <section style={{ padding: '4rem 2rem', background: '#0A0A0A' }}>
+        <section className="section-padding">
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <h2 className="bebas" style={{ fontSize: '42px', marginBottom: '2rem' }}>TRENDING NOW</h2>
             
@@ -107,7 +107,7 @@ const LandingPage = () => {
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
                   onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                   
-                  <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '4px', overflow: 'hidden', marginBottom: '10px' }}>
+                  <div className="trending-img-container">
                     <img src={m.Poster} alt={m.Title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <h3 className="bebas" style={{ fontSize: '20px', margin: '0 0 5px 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{m.Title}</h3>
@@ -123,7 +123,7 @@ const LandingPage = () => {
       )}
 
       {/* Feature Strip */}
-      <section style={{ padding: '4rem 2rem', background: '#0A0A0A' }}>
+      <section className="section-padding">
         <div className="features-grid" style={{
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '2rem', maxWidth: '1200px', margin: '0 auto'
@@ -192,7 +192,7 @@ const LandingPage = () => {
       {/* Footer */}
       <footer style={{ background: '#0A0A0A', padding: '2rem', textAlign: 'center', borderTop: '2px solid #E50914' }}>
         <p style={{ color: '#A3A3A3', fontSize: '14px', margin: 0 }}>
-          PixelStream © 2026 | by Prince
+          PixelStream © 2026 | By Prince
         </p>
       </footer>
     </div>

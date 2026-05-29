@@ -8,10 +8,8 @@ const MoviePoster = ({ movie, onRemove }) => {
   const hasPoster = poster && poster !== "N/A";
 
   return (
-    <div style={{
+    <div className="movie-poster-card" style={{
       position: 'relative',
-      width: '180px',
-      height: '270px',
       borderRadius: '4px',
       overflow: 'hidden',
       background: hasPoster ? `url(${poster}) center/cover no-repeat` : 'linear-gradient(to top, #0A0A0A 0%, #4A00E0 100%)',
