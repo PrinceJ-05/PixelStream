@@ -75,14 +75,14 @@ const LandingPage = () => {
         }} />
 
         <div style={{ zIndex: 2, padding: '0 2rem' }}>
-          <h1 className="bebas" style={{ fontSize: '90px', letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
+          <h1 className="bebas hero-title" style={{ fontSize: '90px', letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
             STREAM WITHOUT LIMITS
           </h1>
           <p style={{ fontSize: '20px', color: '#A3A3A3', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>
             Subscribe. Watch. Repeat.
           </p>
           
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
             <button className="btn btn-primary" onClick={() => navigate('/plans')} style={{ fontSize: '16px', padding: '16px 32px' }}>
               EXPLORE PLANS
             </button>
@@ -99,7 +99,7 @@ const LandingPage = () => {
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <h2 className="bebas" style={{ fontSize: '42px', marginBottom: '2rem' }}>TRENDING NOW</h2>
             
-            <div className="hide-scrollbar" style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '2rem' }}>
+            <div className="hide-scrollbar trending-row" style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '2rem' }}>
               {trendingMovies.map((m, i) => (
                 <div key={i} style={{ minWidth: '200px', width: '200px', flexShrink: 0, cursor: 'pointer', transition: 'transform 0.3s ease' }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
@@ -122,7 +122,7 @@ const LandingPage = () => {
 
       {/* Feature Strip */}
       <section style={{ padding: '4rem 2rem', background: '#0A0A0A' }}>
-        <div style={{
+        <div className="features-grid" style={{
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '2rem', maxWidth: '1200px', margin: '0 auto'
         }}>
@@ -171,7 +171,7 @@ const LandingPage = () => {
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 className="bebas" style={{ fontSize: '52px', margin: 0 }}>WHY PIXELSTREAM?</h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
+        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
           <div>
             <div className="bebas" style={{ fontSize: '64px', color: '#E50914', lineHeight: 1 }}>10M+</div>
             <div style={{ color: '#A3A3A3', fontSize: '16px', letterSpacing: '2px', textTransform: 'uppercase' }}>Subscribers</div>

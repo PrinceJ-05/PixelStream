@@ -6,7 +6,7 @@ import MoviePoster from '../components/MoviePoster';
 const OMDB_KEY = import.meta.env.VITE_OMDB_KEY;
 
 const WatchlistPage = () => {
-  const { watchlist, subscription, handleAddMovie } = useAppContext();
+  const { watchlist, subscription, handleAddMovie, handleRemoveMovie } = useAppContext();
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -97,7 +97,7 @@ const WatchlistPage = () => {
     <div className="page-container" style={{ padding: '3rem 2rem', maxWidth: '1400px', margin: '0 auto' }}>
       
       {/* Header Row */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+      <div className="watchlist-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1 className="bebas" style={{ fontSize: '42px', margin: 0 }}>MY WATCHLIST</h1>
         
         {subscription && (
@@ -112,7 +112,7 @@ const WatchlistPage = () => {
 
       {/* Add Movie Bar */}
       {subscription && (
-        <form onSubmit={submitMovie} style={{ display: 'flex', gap: '10px', marginBottom: '4rem', position: 'relative' }} ref={dropdownRef}>
+        <form className="watchlist-search" onSubmit={submitMovie} style={{ display: 'flex', gap: '10px', marginBottom: '4rem', position: 'relative' }} ref={dropdownRef}>
           <div style={{ flexGrow: 1, position: 'relative' }}>
             <span style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', fontSize: '20px' }}>🔍</span>
             <input 
@@ -170,9 +170,9 @@ const WatchlistPage = () => {
           <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
         </div>
       ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
+        <div className="watchlist-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
           {watchlist.map((movie, idx) => (
-            <MoviePoster key={idx} movie={movie} />
+            <MoviePoster key={idx} movie={movie} onRemove={() => handleRemoveMovie(movie.title)} />
           ))}
         </div>
       )}

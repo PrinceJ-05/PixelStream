@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MoviePoster = ({ movie }) => {
+const MoviePoster = ({ movie, onRemove }) => {
   const { title, poster, genre, rating, year } = movie;
 
   const hasPoster = poster && poster !== "N/A";
@@ -41,8 +41,18 @@ const MoviePoster = ({ movie }) => {
         }} />
       )}
 
-      {/* Remove button mockup */}
-      <button style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', width: '24px', height: '24px', borderRadius: '50%', cursor: 'pointer', zIndex: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '10px' }}>✕</button>
+      {/* Remove button */}
+      {onRemove && (
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            onRemove();
+          }}
+          style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', width: '24px', height: '24px', borderRadius: '50%', cursor: 'pointer', zIndex: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '10px' }}
+        >
+          ✕
+        </button>
+      )}
 
       {/* Play Overlay */}
       <div className="play-overlay" style={{

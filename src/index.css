@@ -154,3 +154,166 @@ button, .btn {
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
 }
+
+/* -----------------------------
+   MOBILE RESPONSIVENESS
+------------------------------ */
+
+/* Global Mobile Fixes */
+@media (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+
+  button, .btn {
+    min-height: 44px;
+  }
+
+  /* Desktop-only classes */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Mobile-only classes */
+  .mobile-only {
+    display: block !important;
+  }
+  .mobile-flex {
+    display: flex !important;
+  }
+
+  /* Landing Page Fixes */
+  .hero-title {
+    font-size: 36px !important;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+  }
+  .features-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .trending-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+  .trending-row > * {
+    scroll-snap-align: start;
+    flex: 0 0 140px;
+    width: 140px !important;
+  }
+
+  /* Plans Page Fixes */
+  .plans-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .plan-card {
+    width: 100% !important;
+  }
+  .table-container {
+    overflow-x: auto;
+  }
+  .promo-banner {
+    font-size: 11px !important;
+    padding: 8px 10px !important;
+    white-space: normal !important;
+  }
+
+  /* Dashboard Page Fixes */
+  .dashboard-welcome {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+  }
+  .dashboard-title {
+    font-size: 32px !important;
+  }
+  .dashboard-stats {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .subscription-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .subscription-card > div:last-child {
+    width: 100%;
+    margin-top: 1rem;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+  }
+  .subscription-card .btn {
+    width: 100%;
+  }
+
+  /* Watchlist Page Fixes */
+  .watchlist-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  .watchlist-grid > * {
+    width: 100% !important;
+  }
+  .watchlist-search {
+    flex-direction: column !important;
+  }
+  .watchlist-search > div {
+    width: 100%;
+  }
+  .watchlist-search button {
+    width: 100%;
+  }
+  .watchlist-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+
+  /* Login Page Fixes */
+  .login-card {
+    width: 90% !important;
+    padding: 24px !important;
+  }
+  .login-card input {
+    height: 48px !important;
+    font-size: 16px !important; /* Prevent iOS zoom */
+  }
+
+  /* Toast Fix */
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+  .toast {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Mobile Nav Overlay Animation */
+.mobile-nav-overlay {
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

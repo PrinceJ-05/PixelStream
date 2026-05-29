@@ -77,4 +77,38 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
+// DELETE /watchlist/remove
+router.delete('/remove', async (req, res) => {
+  try {
+    const { userId, movieTitle } = req.body;
+    
+    if (!userId || !movieTitle) {
+      return res.status(400).json({ error: 'User ID and movie title are required' });
+    }
+
+    const subscription = await Subscription.findOne({ userId, isActive: true });
+    if (!subscription) {
+      return res.status(403).json({ error: 'No active subscription found.' });
+    }
+
+    const watchlist = await Watchlist.findOneAndUpdate(
+      { subscriptionId: subscription._id },
+      { $pull: { movies: { title: movieTitle } } },
+      { new: true }
+    ).populate('subscriptionId');
+
+    if (!watchlist) {
+      return res.status(404).json({ error: 'Watchlist not found' });
+    }
+
+    res.json({ 
+      movies: watchlist.movies, 
+      limit: subscription.watchlistLimit,
+      subscription 
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

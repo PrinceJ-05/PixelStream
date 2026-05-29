@@ -163,6 +163,26 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const handleRemoveMovie = async (movieTitle) => {
+    if (!currentUser) return;
+    try {
+      const res = await fetch(`${API_URL}/watchlist/remove`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: currentUser._id, movieTitle })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showToast(data.error || 'Failed to remove movie. Try again.', 'error');
+      } else {
+        setWatchlist(data.movies);
+        showToast(`✓ ${movieTitle} removed from watchlist`, 'success');
+      }
+    } catch (err) {
+      showToast('Network error', 'error');
+    }
+  };
+
   // Helper dynamic variable
   const isExpired = subscription ? new Date(subscription.expiryDate) < new Date() : false;
 
@@ -178,7 +198,8 @@ export const AppProvider = ({ children }) => {
     logout,
     handleSubscribe,
     handleRenew,
-    handleAddMovie
+    handleAddMovie,
+    handleRemoveMovie
   };
 
   if (loading) return null; // Don't flash UI before checking auth

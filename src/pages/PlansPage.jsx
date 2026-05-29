@@ -21,7 +21,7 @@ const PlansPage = () => {
     <div style={{ background: '#0A0A0A', minHeight: '100vh', paddingBottom: '4rem' }}>
       
       {/* Promotional Banner */}
-      <div style={{
+      <div className="promo-banner" style={{
         width: '100%', height: '48px', background: 'linear-gradient(135deg, #E50914, #B20710)',
         display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', position: 'relative'
       }}>
@@ -56,13 +56,13 @@ const PlansPage = () => {
         </div>
 
         {/* Plans Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '5rem' }}>
+        <div className="plans-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '5rem' }}>
           {PLANS_DATA.map(plan => {
             const isSelected = subscription?.planName === plan.name;
             const isThisExpired = isSelected && isExpired;
 
             return (
-              <div key={plan.name} style={{
+              <div className="plan-card" key={plan.name} style={{
                 position: 'relative',
                 padding: '3rem 2rem',
                 background: '#141414',
@@ -159,7 +159,7 @@ const PlansPage = () => {
         </div>
 
         {/* Comparison Table */}
-        <div style={{ marginBottom: '5rem', overflowX: 'auto' }}>
+        <div className="table-container" style={{ marginBottom: '5rem', overflowX: 'auto' }}>
           <h2 className="bebas" style={{ fontSize: '42px', textAlign: 'center', marginBottom: '2rem' }}>COMPARE PLANS</h2>
           <table style={{ width: '100%', minWidth: '800px', borderCollapse: 'collapse', textAlign: 'center' }}>
             <thead>

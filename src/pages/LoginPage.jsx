@@ -84,7 +84,7 @@ const LoginPage = () => {
         pointerEvents: 'none'
       }} />
 
-      <div style={{
+      <div className="login-card" style={{
         position: 'relative',
         zIndex: 1,
         background: '#141414',

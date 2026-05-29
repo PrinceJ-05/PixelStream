@@ -41,7 +41,7 @@ const DashboardPage = () => {
     <div style={{ background: '#0A0A0A', minHeight: '100vh', paddingBottom: '4rem' }}>
       
       {/* Cinematic Banner */}
-      <div style={{
+      <div className="dashboard-welcome" style={{
         position: 'relative', height: '180px', background: '#141414', overflow: 'hidden',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4rem',
         borderBottom: '1px solid rgba(255,255,255,0.05)'
@@ -62,7 +62,7 @@ const DashboardPage = () => {
 
         {/* Banner Content */}
         <div style={{ position: 'relative', zIndex: 2 }}>
-          <h1 className="bebas" style={{ fontSize: '58px', color: 'white', margin: 0, lineHeight: 1.1, letterSpacing: '2px' }}>
+          <h1 className="bebas dashboard-title" style={{ fontSize: '58px', color: 'white', margin: 0, lineHeight: 1.1, letterSpacing: '2px' }}>
             WELCOME BACK, {userName}
           </h1>
           <div style={{ color: '#A3A3A3', fontSize: '14px', marginTop: '8px' }}>
@@ -101,7 +101,7 @@ const DashboardPage = () => {
         ) : (
           <>
             {/* STATS ROW */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+            <div className="dashboard-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
               
               {/* Card 1: Active Plan */}
               <div className="stat-card" style={{ '--accent': '#F5C518' }}>
@@ -167,10 +167,10 @@ const DashboardPage = () => {
                 <h2 className="bebas" style={{ fontSize: '24px', color: '#F5C518', margin: 0, letterSpacing: '1px' }}>CURRENT SUBSCRIPTION</h2>
               </div>
               
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+              <div className="subscription-card" style={{ display: 'flex', justifyContent: 'space-between', gap: '4rem' }}>
                 
                 {/* Left Column - Details */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1, width: '100%' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px' }}>
                     <span style={{ color: '#A3A3A3', fontSize: '12px', textTransform: 'uppercase' }}>Plan Name</span>
                     <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>{subscription.planName}</span>
@@ -256,7 +256,7 @@ const DashboardPage = () => {
                   <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
                 </div>
               ) : (
-                <div style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '2rem' }} className="hide-scrollbar">
+                <div style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '2rem', scrollSnapType: 'x mandatory' }} className="hide-scrollbar trending-row">
                   {recentMovies.map((movie, idx) => (
                     <div key={idx} onClick={() => navigate('/watchlist')} style={{ flexShrink: 0 }}>
                       <MoviePoster movie={movie} />
