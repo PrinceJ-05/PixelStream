@@ -192,7 +192,7 @@ const LandingPage = () => {
       {/* Footer */}
       <footer style={{ background: '#0A0A0A', padding: '2rem', textAlign: 'center', borderTop: '2px solid #E50914' }}>
         <p style={{ color: '#A3A3A3', fontSize: '14px', margin: 0 }}>
-          PixelStream © 2026 | Powered by OMDb
+          PixelStream © 2026 | by Prince
         </p>
       </footer>
     </div>
