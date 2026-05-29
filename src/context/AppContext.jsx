@@ -11,6 +11,10 @@ export const AppProvider = ({ children }) => {
   const [watchlist, setWatchlist] = useState([]);
   const [toasts, setToasts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMovieForModal, setSelectedMovieForModal] = useState(null);
+
+  const openMovieModal = (title) => setSelectedMovieForModal(title);
+  const closeMovieModal = () => setSelectedMovieForModal(null);
 
   // Use relative /api in production (Vercel) and localhost in development
   const API_URL = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:8080/api';
@@ -193,6 +197,9 @@ export const AppProvider = ({ children }) => {
     toasts,
     loading,
     isExpired,
+    selectedMovieForModal,
+    openMovieModal,
+    closeMovieModal,
     loginUser,
     registerUser,
     logout,

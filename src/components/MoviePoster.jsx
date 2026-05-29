@@ -1,6 +1,8 @@
 import React from 'react';
+import { useAppContext } from '../context/AppContext';
 
 const MoviePoster = ({ movie, onRemove }) => {
+  const { openMovieModal } = useAppContext();
   const { title, poster, genre, rating, year } = movie;
 
   const hasPoster = poster && poster !== "N/A";
@@ -23,6 +25,7 @@ const MoviePoster = ({ movie, onRemove }) => {
       cursor: 'pointer',
       boxShadow: '0 10px 20px rgba(0,0,0,0.5)'
     }}
+    onClick={() => openMovieModal(title)}
     onMouseEnter={e => {
       e.currentTarget.style.transform = 'scale(1.05)';
       e.currentTarget.querySelector('.play-overlay').style.opacity = '1';

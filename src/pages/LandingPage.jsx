@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../context/AppContext';
 
 const OMDB_KEY = import.meta.env.VITE_OMDB_KEY;
 const TRENDING_TITLES = ["Inception", "Interstellar", "The Dark Knight", "Avengers Endgame", "RRR", "KGF Chapter 2", "Pushpa: The Rise", "Pathaan"];
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const { openMovieModal } = useAppContext();
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
@@ -101,7 +103,7 @@ const LandingPage = () => {
             
             <div className="hide-scrollbar trending-row" style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '2rem' }}>
               {trendingMovies.map((m, i) => (
-                <div key={i} style={{ minWidth: '200px', width: '200px', flexShrink: 0, cursor: 'pointer', transition: 'transform 0.3s ease' }}
+                <div key={i} onClick={() => openMovieModal(m.Title)} style={{ minWidth: '200px', width: '200px', flexShrink: 0, cursor: 'pointer', transition: 'transform 0.3s ease' }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
                   onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                   

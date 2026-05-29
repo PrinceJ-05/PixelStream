@@ -9,6 +9,8 @@ import WatchlistPage from './pages/WatchlistPage';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 
+import MovieModal from './components/MovieModal';
+
 const Navbar = () => {
   const { watchlist, currentUser, logout } = useAppContext();
   const location = useLocation();
@@ -48,86 +50,56 @@ const Navbar = () => {
         {navLinks.map(link => (
           <NavLink 
             key={link.path}
-            to={link.path}
+            to={link.path} 
             style={({ isActive }) => ({
-              textDecoration: 'none',
               color: isActive ? 'white' : '#A3A3A3',
-              fontSize: '13px',
-              fontFamily: 'Inter, sans-serif',
-              letterSpacing: '2px',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontFamily: '"Inter", sans-serif',
               fontWeight: 600,
-              textTransform: 'uppercase',
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px'
+              letterSpacing: '1px',
+              transition: 'color 0.2s',
+              position: 'relative'
             })}
           >
-            {({ isActive }) => (
-              <>
-                {link.label}
-                {link.badge !== undefined && link.badge > 0 && (
-                  <span style={{
-                    background: '#E50914',
-                    color: 'white',
-                    borderRadius: '50%',
-                    width: '20px', height: '20px',
-                    display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    fontSize: '11px', fontWeight: 'bold'
-                  }}>
-                    {link.badge}
-                  </span>
-                )}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '-5px',
-                  left: 0,
-                  width: isActive ? '100%' : '0%',
-                  height: '2px',
-                  background: '#E50914',
-                  transition: 'width 0.3s ease'
-                }} />
-              </>
+            {link.label}
+            {link.badge > 0 && (
+              <span style={{
+                position: 'absolute', top: '-8px', right: '-12px',
+                background: '#E50914', color: 'white', fontSize: '10px',
+                padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold'
+              }}>
+                {link.badge}
+              </span>
             )}
           </NavLink>
         ))}
-
         {currentUser && (
           <button 
             onClick={logout}
             style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#A3A3A3',
-              fontSize: '13px',
-              fontFamily: 'Inter, sans-serif',
-              letterSpacing: '2px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              marginLeft: '2rem'
+              background: 'transparent', border: '1px solid rgba(255,255,255,0.2)',
+              color: 'white', padding: '6px 16px', borderRadius: '4px',
+              cursor: 'pointer', fontSize: '12px', fontFamily: '"Inter", sans-serif',
+              fontWeight: 600, transition: 'border 0.2s'
             }}
-            onMouseEnter={e => e.currentTarget.style.color = 'white'}
-            onMouseLeave={e => e.currentTarget.style.color = '#A3A3A3'}
           >
             SIGN OUT
           </button>
         )}
       </div>
 
-      {/* Hamburger Icon */}
-      <div className="mobile-only" style={{ display: 'none', zIndex: 1001 }}>
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} style={{ background: 'transparent', border: 'none', color: 'white', padding: '10px' }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            {isMenuOpen ? (
-              <><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></>
-            ) : (
-              <><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></>
-            )}
-          </svg>
+      {/* Mobile Menu Toggle */}
+      <div className="mobile-only" style={{ zIndex: 1001 }}>
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          style={{ background: 'transparent', border: 'none', color: 'white', fontSize: '24px', cursor: 'pointer' }}
+        >
+          {isMenuOpen ? '✕' : '☰'}
         </button>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="mobile-only mobile-nav-overlay" style={{
           position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh',
@@ -137,12 +109,12 @@ const Navbar = () => {
           {navLinks.map(link => (
             <NavLink 
               key={link.path}
-              to={link.path}
+              to={link.path} 
               onClick={closeMenu}
               style={({ isActive }) => ({
+                color: isActive ? 'white' : '#A3A3A3',
                 textDecoration: 'none',
-                color: isActive ? '#E50914' : 'white',
-                fontSize: '32px',
+                fontSize: '24px',
                 fontFamily: '"Bebas Neue", sans-serif',
                 letterSpacing: '2px'
               })}
@@ -181,11 +153,18 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+const GlobalModalRenderer = () => {
+  const { selectedMovieForModal, closeMovieModal } = useAppContext();
+  if (!selectedMovieForModal) return null;
+  return <MovieModal title={selectedMovieForModal} onClose={closeMovieModal} />;
+};
+
 function App() {
   return (
     <Router>
       <AppProvider>
         <Navbar />
+        <GlobalModalRenderer />
         <div style={{ paddingTop: '80px' }}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
