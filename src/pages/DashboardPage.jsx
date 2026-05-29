@@ -258,7 +258,7 @@ const DashboardPage = () => {
               ) : (
                 <div style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '2rem', scrollSnapType: 'x mandatory' }} className="hide-scrollbar trending-row">
                   {recentMovies.map((movie, idx) => (
-                    <div key={idx} onClick={() => navigate('/watchlist')} style={{ flexShrink: 0 }}>
+                    <div key={idx} style={{ flexShrink: 0 }}>
                       <MoviePoster movie={movie} />
                     </div>
                   ))}
