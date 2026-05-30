@@ -5,6 +5,7 @@ import { useAppContext } from '../context/AppContext';
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -18,17 +19,21 @@ const LoginPage = () => {
       setError('Email is required');
       return;
     }
+    if (!password || password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
 
     try {
       if (isLogin) {
-        await loginUser(email);
+        await loginUser(email, password);
         navigate('/');
       } else {
         if (!name) {
           setError('Name is required');
           return;
         }
-        await registerUser(name, email);
+        await registerUser(name, email, password);
         navigate('/');
       }
     } catch (err) {
@@ -165,12 +170,24 @@ const LoginPage = () => {
             </div>
           )}
 
-          <div style={{ marginBottom: '2rem' }}>
+          <div style={{ marginBottom: '1.5rem' }}>
             <label style={labelStyle}>Email</label>
             <input 
               type="email" 
               value={email}
               onChange={e => setEmail(e.target.value)}
+              style={inputStyle}
+              onFocus={e => e.target.style.borderColor = '#E50914'}
+              onBlur={e => e.target.style.borderColor = 'transparent'}
+            />
+          </div>
+
+          <div style={{ marginBottom: '2rem' }}>
+            <label style={labelStyle}>Password</label>
+            <input 
+              type="password" 
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               style={inputStyle}
               onFocus={e => e.target.style.borderColor = '#E50914'}
               onBlur={e => e.target.style.borderColor = 'transparent'}

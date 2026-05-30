@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const subscriptionSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  planName: { 
-    type: String, 
-    enum: ['Mini', 'Family', 'Ultra'], 
-    required: true 
+  planName: {
+    type: String,
+    enum: ['Mini', 'Family', 'Ultra'],
+    required: true
   },
   monthlyCost: { type: Number, required: true },
   streamingQuality: { type: String, required: true },
@@ -16,7 +16,7 @@ const subscriptionSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true }
 }, { timestamps: true });
 
-subscriptionSchema.pre('save', function() {
+subscriptionSchema.pre('save', function () {
   if (this.isModified('validityDays') || this.isNew) {
     // auto-calculates expiryDate = Date.now() + validityDays × 86400000
     this.expiryDate = new Date(Date.now() + this.validityDays * 86400000);

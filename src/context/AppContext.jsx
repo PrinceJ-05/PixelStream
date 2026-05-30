@@ -38,41 +38,53 @@ export const AppProvider = ({ children }) => {
     setLoading(false);
   };
 
-  const loginUser = async (email) => {
+  const loginUser = async (email, password) => {
     try {
-      const res = await fetch(`${API_URL}/users/email/${email}`);
+      const res = await fetch(`${API_URL}/users/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
       const data = await res.json();
       if (!res.ok) {
         showToast(data.error || 'User not found', 'error');
+        throw new Error(data.error || 'User not found'); // Bubble up error to LoginPage
       } else {
         localStorage.setItem('pixelstream_user', JSON.stringify({ _id: data._id, name: data.name }));
         setCurrentUser({ _id: data._id, name: data.name });
         showToast(`Welcome back, ${data.name}!`, 'success');
       }
     } catch (err) {
-      showToast('Network error', 'error');
+      if (err.message !== 'Invalid password' && err.message !== 'User not found' && err.message !== 'Email and password are required') {
+        showToast('Network error', 'error');
+      }
+      throw err;
     }
   };
 
-  const registerUser = async (name, email) => {
+  const registerUser = async (name, email, password) => {
     try {
       const res = await fetch(`${API_URL}/users/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email })
+        body: JSON.stringify({ name, email, password })
       });
       const data = await res.json();
       
-      if (!res.ok && !data.user) {
+      if (!res.ok) {
         showToast(data.error || 'Failed to register', 'error');
+        throw new Error(data.error || 'Failed to register');
       } else {
-        const userData = data.user || data;
+        const userData = data;
         localStorage.setItem('pixelstream_user', JSON.stringify({ _id: userData._id, name: userData.name }));
         setCurrentUser({ _id: userData._id, name: userData.name });
         showToast(`Account created for ${userData.name}!`, 'success');
       }
     } catch (err) {
-      showToast('Network error', 'error');
+      if (!err.message || (!err.message.includes('exists') && !err.message.includes('Password'))) {
+        showToast('Network error', 'error');
+      }
+      throw err;
     }
   };
 

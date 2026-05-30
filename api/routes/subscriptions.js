@@ -4,7 +4,7 @@ const Subscription = require('../models/Subscription');
 const Watchlist = require('../models/Watchlist');
 
 const PLAN_DATA = {
-  Mini: { cost: 99, quality: '720p', maxDevices: 1, watchlistLimit: 10 },
+  Mini: { cost: 99, quality: '720p', maxDevices: 1, watchlistLimit: 5 },
   Family: { cost: 199, quality: '1080p', maxDevices: 4, watchlistLimit: 50 },
   Ultra: { cost: 299, quality: '4K HDR', maxDevices: 6, watchlistLimit: 100 }
 };

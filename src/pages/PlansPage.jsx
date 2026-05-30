@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 
 const PLANS_DATA = [
-  { name: 'Mini', cost: 99, quality: '720p', devices: 1, validity: 30, watchlistLimit: 10 },
+  { name: 'Mini', cost: 99, quality: '720p', devices: 1, validity: 30, watchlistLimit: 5 },
   { name: 'Family', cost: 199, quality: '1080p', devices: 4, validity: 30, watchlistLimit: 50, popular: true },
   { name: 'Ultra', cost: 299, quality: '4K HDR', devices: 6, validity: 30, watchlistLimit: 100 }
 ];
